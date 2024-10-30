@@ -3,7 +3,6 @@
 #include <chrono>
 #include <iostream>
 
-namespace aset::asolve {
 struct Timer {
   Timer(const std::string& name, int level = 0, bool verbose = true) : level_{level}, name_{name}, cumulated_{0.} {
     if (verbose)
@@ -46,4 +45,3 @@ struct Timer {
   std::chrono::time_point<std::chrono::high_resolution_clock> start_;
   std::chrono::duration<double, std::milli> cumulated_;
 };
-} // namespace aset::asolve

@@ -27,9 +27,8 @@ Different methods to loop on cells (in order to compute volume in this case):
 Compilation
 -----------
 
-        make && ./virtual_vs_block 100000000 100000000
-        g++ -I../../../a-{core,solve}/src -std=c++20 -Wfatal-errors -frecord-gcc-switches -DEIGEN_USE_BLAS -DEIGEN_USE_MKL_ALL -DEIGEN_DEFAULT_TO_ROW_MAJOR -O3 -march=native -DNDEBUG    virtual_vs_block.cpp   -o virtual_vs_block
-
+    g++ -I. -std=c++20 -Wfatal-errors -frecord-gcc-switches -DEIGEN_USE_BLAS -DEIGEN_USE_MKL_ALL -DEIGEN_DEFAULT_TO_ROW_MAJOR -O3 -march=native -DNDEBUG    virtual_vs_block.cpp   -o virtual_vs_block
+    ./virtual_vs_block 100000000 100000000
 
 
 
@@ -141,7 +140,7 @@ On retombe bien sur 2nd series.
 #### 7th series: ColMajor (pour rappel)
 
 ```
-g++ -I../../../a-{core,solve}/src -std=c++20 -Wfatal-errors -frecord-gcc-switches -DEIGEN_USE_BLAS -DEIGEN_USE_MKL_ALL  -O3 -march=native -DNDEBUG    virtual_vs_block.cpp   -o virtual_vs_block
+g++ -I. -std=c++20 -Wfatal-errors -frecord-gcc-switches -DEIGEN_USE_BLAS -DEIGEN_USE_MKL_ALL  -O3 -march=native -DNDEBUG    virtual_vs_block.cpp   -o virtual_vs_block
 ```
 
 test (ms) | (1)     | (2)     | (3)     | (4)     | (5)     | (6)

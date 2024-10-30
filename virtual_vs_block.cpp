@@ -44,7 +44,7 @@ int main(int argc, char** argv)
 
   sleep(sleep_time);
   { // Version 1: "boucles a la C"
-    aset::asolve::Timer t0("C style", 0, false);
+    Timer t0("C style", 0, false);
     double vol=0;
     double* coords = mesh.coordinates.data();
     int* tetras = mesh.tetras.data();
@@ -73,7 +73,7 @@ int main(int argc, char** argv)
 
   sleep(sleep_time);
   { // Version 2: loop et calcul direct, a base de slice syntax
-    aset::asolve::Timer t0("eigen view+slice", 0, false);
+    Timer t0("eigen view+slice", 0, false);
     using Eigen::placeholders::all;
     double vol=0;
     // iterate on rows: https://eigen.tuxfamily.org/dox/group__TutorialSTL.html
@@ -94,7 +94,7 @@ int main(int argc, char** argv)
 
   sleep(sleep_time);
   { // Version 3: visitor object and virtual function
-    aset::asolve::Timer t0("visitor+virtual",0,false);
+    Timer t0("visitor+virtual",0,false);
     double vol=0;
     for (int rk=0; rk<nb_cells; rk++) {
       Tetra t(&mesh, rk);
@@ -107,7 +107,7 @@ int main(int argc, char** argv)
 
   sleep(sleep_time);
   { // Version 4: visitor non virtual (simulates a function selected above the Block)
-    aset::asolve::Timer t0("visitor non virtual",0,false);
+    Timer t0("visitor non virtual",0,false);
     double vol=0;
     for (int rk=0; rk<nb_cells; rk++) {
       TetraDirect t(&mesh, rk);
@@ -119,7 +119,7 @@ int main(int argc, char** argv)
 
   sleep(sleep_time);
   { // Version 5: visitor non virtual and avoid cell_coords copy(simulates a function selected above the Block)
-    aset::asolve::Timer t0("visitor non virtual, no coord copy",0,false);
+    Timer t0("visitor non virtual, no coord copy",0,false);
     double vol=0;
     for (int rk=0; rk<nb_cells; rk++) {
       TetraDirect t(&mesh, rk);
@@ -131,8 +131,7 @@ int main(int argc, char** argv)
 
   sleep(sleep_time);
   { // Version 6: same as previous, take TetraDirect out of the loop
-    aset::asolve::Timer t0("visitor non virtual, no coord copy, set_rank",0,false);
-    // Johann appelle cet objet une loupe, ou un decodeur, qui se ballade sur les donnees
+    Timer t0("visitor non virtual, no coord copy, set_rank",0,false);
     double vol=0;
     TetraDirect t(&mesh, 0);
     for (int rk=0; rk<nb_cells; rk++) {
